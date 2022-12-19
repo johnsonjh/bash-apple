@@ -117,6 +117,9 @@ main (argc, argv)
   if (oflags == 0)
     oflags = SFLAG;
 
+extern char *shell_version_string __P((void));
+extern void show_shell_version __P((int));
+
   if (oflags & (RFLAG|VFLAG))
     {
       strcpy (dv, dist_version);

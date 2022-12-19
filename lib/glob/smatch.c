@@ -30,7 +30,7 @@
 #include "shmbutil.h"
 #include "xmalloc.h"
 
-#include <xlocale.h>
+#include <locale.h>
 /* First, compile `sm_loop.c' for single-byte characters. */
 #define CHAR	unsigned char
 #define U_CHAR	unsigned char
@@ -81,35 +81,35 @@ static int rangecmp (c1, c2)
 #  define rangecmp(c1, c2)	((int)(c1) - (int)(c2))
 #endif /* !HAVE_STRCOLL */
 
-#ifdef __APPLE__
-static int
-collequiv (c1, c2)
-	 int c1, c2;
-{
+/* #ifdef __APPLE__ */
+/* static int */
+/* collequiv (c1, c2) */
+/* 	 int c1, c2; */
+/* { */
 
-  int len1, len2, prim1, prim2, sec1, sec2;
+/*   int len1, len2, prim1, prim2, sec1, sec2; */
 
-  static char s1[2] = {' ', '\0'};
-  static char s2[2] = {' ', '\0'};
+/*   static char s1[2] = {' ', '\0'}; */
+/*   static char s2[2] = {' ', '\0'}; */
 
-  /* Eight bits only.  Period. */
-  c1 &= 0xFF;
-  c2 &= 0xFF;
+/*   /1* Eight bits only.  Period. *1/ */
+/*   c1 &= 0xFF; */
+/*   c2 &= 0xFF; */
 
-  if (c1 == c2)
-	return 1;
+/*   if (c1 == c2) */
+/* 	return 1; */
 
-  s1[0] = c1;
-  len1 = 1;
-  s2[0] = c2;
-  len2 = 1;
+/*   s1[0] = c1; */
+/*   len1 = 1; */
+/*   s2[0] = c2; */
+/*   len2 = 1; */
 
-  __collate_lookup(s1, &len1, &prim1, &sec1);
-  __collate_lookup(s2, &len2, &prim2, &sec2);
+/*   __collate_lookup(s1, &len1, &prim1, &sec1); */
+/*   __collate_lookup(s2, &len2, &prim2, &sec2); */
 
-  return (prim1 == prim2);
-}
-#elif defined (HAVE_STRCOLL)
+/*   return (prim1 == prim2); */
+/* } */
+#if defined (HAVE_STRCOLL)
 
 /* Helper function for collating symbol equivalence. */
 /* See also: rangecmp. */
@@ -311,31 +311,31 @@ static int
 collequiv_wc (c, equiv)
      wint_t c, equiv;
 {
-#ifdef __APPLE__
-  int len1, len2, prim1, prim2, sec1, sec2;
-  static wchar_t wcs1[2] = {L' ', L'\0'};
-  static wchar_t wcs2[2] = {L' ', L'\0'};
+/* #ifdef __APPLE__ */
+/*   int len1, len2, prim1, prim2, sec1, sec2; */
+/*   static wchar_t wcs1[2] = {L' ', L'\0'}; */
+/*   static wchar_t wcs2[2] = {L' ', L'\0'}; */
 
-  /* Eight bits only.  Period. */
+/*   /1* Eight bits only.  Period. *1/ */
 
-  if (c == equiv)
-    return 1;
+/*   if (c == equiv) */
+/*     return 1; */
 
-  len1 = 1;
-  wcs1[0] = c;
-  len2 = 1;
-  wcs2[0] = equiv;
+/*   len1 = 1; */
+/*   wcs1[0] = c; */
+/*   len2 = 1; */
+/*   wcs2[0] = equiv; */
 
-  __collate_lookup_l(wcs1, &len1, &prim1, &sec1, LC_GLOBAL_LOCALE);
-  __collate_lookup_l(wcs2, &len2, &prim2, &sec2, LC_GLOBAL_LOCALE);
+/*   __collate_lookup_l(wcs1, &len1, &prim1, &sec1, LC_GLOBAL_LOCALE); */
+/*   __collate_lookup_l(wcs2, &len2, &prim2, &sec2, LC_GLOBAL_LOCALE); */
 
-  return (prim1 == prim2);
-#else /* !__APPLE__ */
+/*   return (prim1 == prim2); */
+/* #else /1* !__APPLE__ *1/ */
   /* NOTE: rangecmp and rangecmp_wc differ in an important way */
   /* rangecmp: returns c - equiv iff strcoll returns 0 - this is not helpful */
   /* rangecmp_wc: returns the result of wcscoll directly */
   return (rangecmp_wc(c, equiv) == 0);
-#endif /* !__APPLE__ */
+/* #endif /1* !__APPLE__ *1/ */
 }
 
 /* Helper function for collating symbol. */

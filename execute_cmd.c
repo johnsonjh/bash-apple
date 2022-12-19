@@ -3949,7 +3949,11 @@ shell_execve (command, args, env)
 
   /* If we get to this point, then start checking out the file.
      Maybe it is something we can hack ourselves. */
-  if (i != ENOEXEC && i != EBADEXEC)
+  if (i != ENOEXEC
+#ifdef EBADEXEC
+		  && i != EBADEXEC
+#endif
+     )
     {
       if ((stat (command, &finfo) == 0) && (S_ISDIR (finfo.st_mode)))
 	internal_error (_("%s: is a directory"), command);

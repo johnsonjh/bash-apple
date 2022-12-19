@@ -33,6 +33,9 @@ The -V option produces a more verbose description.
 $END
 
 #include <config.h>
+#include <stdio.h>
+
+#include <bsd/bsd.h>
 
 #if defined (HAVE_UNISTD_H)
 #  ifdef _MINIX

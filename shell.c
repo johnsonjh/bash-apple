@@ -44,9 +44,9 @@
 #endif
 
 #if defined(__APPLE__)
-#include <get_compat.h>
+/* #include <get_compat.h> */
 #include <stdint.h>
-#include <System/sys/codesign.h>
+/* #include <System/sys/codesign.h> */
 #endif /* __APPLE__ */
 
 #include "bashintl.h"
@@ -322,14 +322,14 @@ _cygwin32_check_tmp ()
 #endif /* __CYGWIN__ */
 
 #ifdef __APPLE__
-static int
-is_rootless_restricted_environment(void)
-{
-	uint32_t flags;
-	if (csops(0, CS_OPS_STATUS, &flags, sizeof(flags)))
-		return -1;
-	return (flags & CS_INSTALLER) ? 1 : 0;
-}
+/* static int */
+/* is_rootless_restricted_environment(void) */
+/* { */
+/* 	uint32_t flags; */
+/* 	if (csops(0, CS_OPS_STATUS, &flags, sizeof(flags))) */
+/* 		return -1; */
+/* 	return (flags & CS_INSTALLER) ? 1 : 0; */
+/* } */
 #endif /* __APPLE__ */
 
 #ifdef __APPLE__
@@ -374,16 +374,16 @@ main (argc, argv, env)
   code = setjmp (top_level);
   if (code)
     exit (2);
-#if defined(__APPLE__)
-  if (!COMPAT_MODE("bin/sh", "Unix2003")) {
+/* #if defined(__APPLE__) */
+/*   if (!COMPAT_MODE("bin/sh", "Unix2003")) { */
 #if defined(STRICT_POSIX)
     execv("/bin/bash", argv);
     exit (2);
 #else	/* !STRICT_POSIX */
     tiger_mode = 1;	/* act like Tiger wrt setuid and #!/bin/sh */
 #endif	/* STRICT_POSIX */
-  }
-#endif /* __APPLE__ */
+  /* } */
+/* #endif /1* __APPLE__ *1/ */
 #if defined (USING_BASH_MALLOC) && defined (DEBUG) && !defined (DISABLE_MALLOC_WRAPPERS)
 #  if 1
   malloc_set_register (1);
@@ -501,10 +501,10 @@ main (argc, argv, env)
     if (-1 == setreuid(ruid, euid))
       internal_error( _("setreuid(%u,%u) failed: %s"), ruid, euid, strerror(errno));   
   }
-  int rootless = is_rootless_restricted_environment();
-  if (-1 == rootless)
-    internal_error( _("Unable to determine rootless status: %s"), strerror(errno));
-  running_setuid |= rootless;
+  /* int rootless = is_rootless_restricted_environment(); */
+  /* if (-1 == rootless) */
+  /*   internal_error( _("Unable to determine rootless status: %s"), strerror(errno)); */
+  /* running_setuid |= rootless; */
 #else  /* !__APPLE__ */
   if (running_setuid && privileged_mode == 0)
     disable_priv_mode ();
