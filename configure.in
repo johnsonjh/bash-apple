@@ -90,12 +90,6 @@ sparc-linux*)	opt_bash_malloc=no ;;	# sparc running linux; requires ELF
 *-opennt*|*-interix*)	opt_bash_malloc=no ;;	# Interix, now owned by Microsoft
 esac
 
-# memory scrambling on free()
-case "${host_os}" in
-sco3.2v5*|sco3.2v4*)	opt_memscramble=no ;;
-*)			opt_memscramble=yes ;;
-esac
-
 dnl
 dnl macros for the bash debugger
 dnl
@@ -235,7 +229,6 @@ AC_ARG_ENABLE(usg-echo-default, AC_HELP_STRING([--enable-usg-echo-default], [a s
 AC_ARG_ENABLE(xpg-echo-default, AC_HELP_STRING([--enable-xpg-echo-default], [make the echo builtin expand escape sequences by default]), opt_xpg_echo=$enableval)
 
 dnl options that alter how bash is compiled and linked
-AC_ARG_ENABLE(mem-scramble, AC_HELP_STRING([--enable-mem-scramble], [scramble memory on calls to malloc and free]), opt_memscramble=$enableval)
 AC_ARG_ENABLE(profiling, AC_HELP_STRING([--enable-profiling], [allow profiling with gprof]), opt_profiling=$enableval)
 AC_ARG_ENABLE(static-link, AC_HELP_STRING([--enable-static-link], [link bash statically, for use as a root shell]), opt_static_link=$enableval)
 
@@ -310,10 +303,6 @@ AC_DEFINE(NO_MULTIBYTE_SUPPORT)
 fi
 if test $opt_debugger = yes; then
 AC_DEFINE(DEBUGGER)
-fi
-
-if test $opt_memscramble = yes; then
-AC_DEFINE(MEMSCRAMBLE)
 fi
 
 if test "$opt_minimal_config" = yes; then

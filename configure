@@ -845,7 +845,6 @@ enable_single_help_strings
 enable_strict_posix_default
 enable_usg_echo_default
 enable_xpg_echo_default
-enable_mem_scramble
 enable_profiling
 enable_static_link
 enable_largefile
@@ -1538,7 +1537,6 @@ Optional Features:
   --enable-xpg-echo-default
                           make the echo builtin expand escape sequences by
                           default
-  --enable-mem-scramble   scramble memory on calls to malloc and free
   --enable-profiling      allow profiling with gprof
   --enable-static-link    link bash statically, for use as a root shell
   --disable-largefile     omit support for large files
@@ -3198,13 +3196,6 @@ sparc-linux*)	opt_bash_malloc=no ;;	# sparc running linux; requires ELF
 *-opennt*|*-interix*)	opt_bash_malloc=no ;;	# Interix, now owned by Microsoft
 esac
 
-# memory scrambling on free()
-case "${host_os}" in
-sco3.2v5*|sco3.2v4*)	opt_memscramble=no ;;
-*)			opt_memscramble=yes ;;
-esac
-
-
 # Check whether --with-lispdir was given.
 if test ${with_lispdir+y}
 then :
@@ -3611,13 +3602,6 @@ then :
   enableval=$enable_xpg_echo_default; opt_xpg_echo=$enableval
 fi
 
-
-# Check whether --enable-mem-scramble was given.
-if test ${enable_mem_scramble+y}
-then :
-  enableval=$enable_mem_scramble; opt_memscramble=$enableval
-fi
-
 # Check whether --enable-profiling was given.
 if test ${enable_profiling+y}
 then :
@@ -3719,11 +3703,6 @@ printf "%s\n" "#define NO_MULTIBYTE_SUPPORT 1" >>confdefs.h
 fi
 if test $opt_debugger = yes; then
 printf "%s\n" "#define DEBUGGER 1" >>confdefs.h
-
-fi
-
-if test $opt_memscramble = yes; then
-printf "%s\n" "#define MEMSCRAMBLE 1" >>confdefs.h
 
 fi
 

@@ -148,10 +148,6 @@
    default (except for echo; that is controlled separately). */
 #undef STRICT_POSIX
 
-/* Define MEMSCRAMBLE if you want the bash malloc and free to scramble
-   memory contents on malloc() and free(). */
-#undef MEMSCRAMBLE
-
 /* Define AFS if you are using Transarc's AFS. */
 #undef AFS
 
