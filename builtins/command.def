@@ -36,6 +36,7 @@ $END
 #include <stdio.h>
 
 #include <bsd/bsd.h>
+#include <bsd/stdio.h>
 
 #if defined (HAVE_UNISTD_H)
 #  ifdef _MINIX

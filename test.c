@@ -30,6 +30,9 @@
 
 #include <stdio.h>
 
+#include <bsd/bsd.h>
+#include <bsd/stdio.h>
+
 #include "bashtypes.h"
 
 #if !defined (HAVE_LIMITS_H)
