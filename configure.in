@@ -969,7 +969,7 @@ AC_SUBST(JOBS_O)
 dnl Defines that we want to propagate to the Makefiles in subdirectories,
 dnl like glob and readline
 
-LOCAL_DEFS=-DSHELL
+LOCAL_DEFS="-D__APPLE__ -DSHELL"
 
 dnl use this section to possibly define more cpp variables, specify local
 dnl libraries, and specify any additional local cc flags

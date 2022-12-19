@@ -27286,7 +27286,7 @@ fi
 
 
 
-LOCAL_DEFS=-DSHELL
+LOCAL_DEFS="-D__APPLE__ -DSHELL"
 
 
 case "${host_os}" in
