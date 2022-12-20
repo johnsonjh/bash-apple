@@ -734,21 +734,6 @@ main (argc, argv, env)
       get_tty_state ();
     }
 
-#ifdef __APPLE__
-  if (interactive_shell && !act_like_sh) {
-      char const * const silence_warning = getenv("BASH_SILENCE_DEPRECATION_WARNING");
-      if (!silence_warning || *silence_warning != '1') {
-          struct stat sbuf;
-          if (stat("/bin/zsh", &sbuf) == 0) {
-              fprintf(stderr, "\n"
-                              "The default interactive shell is now zsh.\n"
-                              "To update your account to use zsh, please run `chsh -s /bin/zsh`.\n"
-                              "For more details, please visit https://support.apple.com/kb/HT208050.\n");
-          }
-      }
-  }
-#endif
-
 #if !defined (ONESHOT)
  read_and_execute:
 #endif /* !ONESHOT */
