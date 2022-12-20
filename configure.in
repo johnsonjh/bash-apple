@@ -55,7 +55,6 @@ dnl configure defaults
 opt_bash_malloc=yes
 opt_purify=no
 opt_purecov=no
-opt_afs=no
 opt_curses=no
 opt_with_installed_readline=no
 
@@ -98,7 +97,6 @@ AC_ARG_VAR(DEBUGGER_START_FILE, [location of bash debugger initialization file])
 
 dnl arguments to configure
 dnl packages
-AC_ARG_WITH(afs, AC_HELP_STRING([--with-afs], [if you are running AFS]), opt_afs=$withval)
 AC_ARG_WITH(bash-malloc, AC_HELP_STRING([--with-bash-malloc], [use the Bash version of malloc]), opt_bash_malloc=$withval)
 AC_ARG_WITH(curses, AC_HELP_STRING([--with-curses], [use the curses library instead of the termcap library]), opt_curses=$withval)
 AC_ARG_WITH(gnu-malloc, AC_HELP_STRING([--with-gnu-malloc], [synonym for --with-bash-malloc]), opt_bash_malloc=$withval)
@@ -132,10 +130,6 @@ fi
 
 if test "$opt_purecov" = yes; then
 	PURIFY="${PURIFY}purecov"
-fi
-
-if test "$opt_afs" = yes; then
-	AC_DEFINE(AFS)
 fi
 
 if test "$opt_curses" = yes; then

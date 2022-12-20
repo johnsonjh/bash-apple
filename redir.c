@@ -594,13 +594,6 @@ redir_open (filename, flags, mode, ri)
   else
     {
       fd = open (filename, flags, mode);
-#if defined (AFS)
-      if ((fd < 0) && (errno == EACCES))
-	{
-	  fd = open (filename, flags & ~O_CREAT, mode);
-	  errno = EACCES;	/* restore errno */
-	}
-#endif /* AFS */
     }
 
   return fd;

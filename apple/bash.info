@@ -7911,9 +7911,6 @@ enabled by default, use `--disable-FEATURE'.
    Here is a complete list of the `--enable-' and `--with-' options
 that the Bash `configure' recognizes.
 
-`--with-afs'
-     Define if you are using the Andrew File System from Transarc.
-
 `--with-bash-malloc'
      Use the Bash version of `malloc' in the directory `lib/malloc'.
      This is not the same `malloc' that appears in GNU libc, but an

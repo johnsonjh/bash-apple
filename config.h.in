@@ -148,9 +148,6 @@
    default (except for echo; that is controlled separately). */
 #undef STRICT_POSIX
 
-/* Define AFS if you are using Transarc's AFS. */
-#undef AFS
-
 #undef ENABLE_NLS
 
 /* End of configuration settings controllable by autoconf. */

@@ -290,13 +290,9 @@ dequote_pathname (pathname)
 /* Test whether NAME exists. */
 
 #if defined (HAVE_LSTAT)
-#  define GLOB_TESTNAME(name)  (lstat (name, &finfo))
+# define GLOB_TESTNAME(name)  (lstat (name, &finfo))
 #else /* !HAVE_LSTAT */
-#  if !defined (AFS)
-#    define GLOB_TESTNAME(name)  (sh_eaccess (nextname, F_OK))
-#  else /* AFS */
-#    define GLOB_TESTNAME(name)  (access (nextname, F_OK))
-#  endif /* AFS */
+# define GLOB_TESTNAME(name)  (sh_eaccess (nextname, F_OK))
 #endif /* !HAVE_LSTAT */
 
 /* Return 0 if DIR is a directory, -1 otherwise. */

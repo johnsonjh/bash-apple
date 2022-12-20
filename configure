@@ -808,7 +808,6 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 with_lispdir
-with_afs
 with_bash_malloc
 with_curses
 with_gnu_malloc
@@ -1547,7 +1546,6 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-lispdir          override the default lisp directory
-  --with-afs              if you are running AFS
   --with-bash-malloc      use the Bash version of malloc
   --with-curses           use the curses library instead of the termcap
                           library
@@ -3164,7 +3162,6 @@ case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 opt_bash_malloc=yes
 opt_purify=no
 opt_purecov=no
-opt_afs=no
 opt_curses=no
 opt_with_installed_readline=no
 
@@ -3284,13 +3281,6 @@ fi
 
 
 
-# Check whether --with-afs was given.
-if test ${with_afs+y}
-then :
-  withval=$with_afs; opt_afs=$withval
-fi
-
-
 # Check whether --with-bash-malloc was given.
 if test ${with_bash_malloc+y}
 then :
@@ -3361,11 +3351,6 @@ fi
 
 if test "$opt_purecov" = yes; then
 	PURIFY="${PURIFY}purecov"
-fi
-
-if test "$opt_afs" = yes; then
-	printf "%s\n" "#define AFS 1" >>confdefs.h
-
 fi
 
 if test "$opt_curses" = yes; then

@@ -94,18 +94,6 @@ file_status (name)
 
   r = FS_EXISTS;
 
-#if defined (AFS)
-  /* We have to use access(2) to determine access because AFS does not
-     support Unix file system semantics.  This may produce wrong
-     answers for non-AFS files when ruid != euid.  I hate AFS. */
-  if (access (name, X_OK) == 0)
-    r |= FS_EXECABLE;
-  if (access (name, R_OK) == 0)
-    r |= FS_READABLE;
-
-  return r;
-#else /* !AFS */
-
   /* Find out if the file is actually executable.  By definition, the
      only other criteria is that the file has an execute bit set that
      we can use.  The same with whether or not a file is readable. */
@@ -148,7 +136,6 @@ file_status (name)
     }
 
   return r;
-#endif /* !AFS */
 }
 
 /* Return non-zero if FILE exists and is executable.

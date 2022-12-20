@@ -6674,8 +6674,6 @@ Here is a complete list of the @option{--enable-} and
 @option{--with-} options that the Bash @code{configure} recognizes. 
 
 @table @code
-@item --with-afs
-Define if you are using the Andrew File System from Transarc.
 
 @item --with-bash-malloc
 Use the Bash version of
