@@ -48,3 +48,4 @@ syntax.c
 version.h
 y.tab.c
 y.tab.h
+clang_output*
