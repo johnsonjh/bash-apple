@@ -108,8 +108,8 @@
 #define LSH	9	/* "<<" Left SHift */
 #define RSH    10	/* ">>" Right SHift */
 #define OP_ASSIGN 11	/* op= expassign as in Posix.2 */
-#define COND	12	/* exp1 ? exp2 : exp3 */
-#define POWER	13	/* exp1**exp2 */
+#define COND	12	/* exp1 ? xexp2 : exp3 */
+#define POWER	13	/* exp1**xexp2 */
 #define PREINC	14	/* ++var */
 #define PREDEC	15	/* --var */
 #define POSTINC	16	/* var++ */
@@ -174,7 +174,7 @@ static intmax_t exp5 __P((void));
 static intmax_t exp4 __P((void));
 static intmax_t expshift __P((void));
 static intmax_t exp3 __P((void));
-static intmax_t exp2 __P((void));
+static intmax_t xexp2 __P((void));
 static intmax_t	exppower __P((void));
 static intmax_t exp1 __P((void));
 static intmax_t exp0 __P((void));
@@ -718,14 +718,14 @@ exp3 ()
 {
   register intmax_t val1, val2;
 
-  val1 = exp2 ();
+  val1 = xexp2 ();
 
   while ((curtok == PLUS) || (curtok == MINUS))
     {
       int op = curtok;
 
       readtok ();
-      val2 = exp2 ();
+      val2 = xexp2 ();
 
       if (op == PLUS)
 	val1 += val2;
@@ -736,7 +736,7 @@ exp3 ()
 }
 
 static intmax_t
-exp2 ()
+xexp2 ()
 {
   register intmax_t val1, val2;
 
