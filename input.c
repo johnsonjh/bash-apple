@@ -102,11 +102,7 @@ ungetc_with_restart (c, stream)
 
 /* A facility similar to stdio, but input-only. */
 
-#if defined (USING_BASH_MALLOC)
-#  define MAX_INPUT_BUFFER_SIZE	8176
-#else
-#  define MAX_INPUT_BUFFER_SIZE	8192
-#endif
+#define MAX_INPUT_BUFFER_SIZE	8192
 
 #if !defined (SEEK_CUR)
 #  define SEEK_CUR 1

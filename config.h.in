@@ -214,9 +214,6 @@
 
 /* Memory management functions. */
 
-/* Define if using the bash version of malloc in lib/malloc/malloc.c */
-#undef USING_BASH_MALLOC
-
 #undef DISABLE_MALLOC_WRAPPERS
 
 /* Define if using alloca.c.  */

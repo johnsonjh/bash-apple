@@ -24,11 +24,7 @@
 
 #include <xmalloc.h>
 
-#if defined (USING_BASH_MALLOC)
-#  define LBUF_BUFSIZE	1008
-#else
-#  define LBUF_BUFSIZE	BUFSIZ
-#endif
+#define LBUF_BUFSIZE	BUFSIZ
 
 /* Cause STREAM to buffer lines as opposed to characters or blocks. */
 int
@@ -41,11 +37,7 @@ sh_setlinebuf (stream)
   return (0);
 #endif
 
-#if defined (USING_BASH_MALLOC)
-  local_linebuf = (char *)xmalloc (LBUF_BUFSIZE);
-#else
-  local_linebuf = (char *)NULL;
-#endif
+local_linebuf = (char *)NULL;
 
 #if defined (HAVE_SETVBUF)
 

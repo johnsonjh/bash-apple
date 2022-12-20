@@ -179,31 +179,18 @@ Optional Features
 
 The Bash `configure' has a number of `--enable-FEATURE' options, where
 FEATURE indicates an optional part of Bash.  There are also several
-`--with-PACKAGE' options, where PACKAGE is something like `bash-malloc'
-or `purify'.  To turn off the default use of a package, use
-`--without-PACKAGE'.  To configure Bash without a feature that is
-enabled by default, use `--disable-FEATURE'.
+`--with-PACKAGE' options, where PACKAGE is something like `purify'.
+To turn off the default use of a package, use `--without-PACKAGE'.
+To configure Bash without a feature that is enabled by default,
+use `--disable-FEATURE'.
 
 Here is a complete list of the `--enable-' and `--with-' options that
 the Bash `configure' recognizes.
-
-`--with-bash-malloc'
-     Use the Bash version of `malloc' in the directory `lib/malloc'.
-     This is not the same `malloc' that appears in GNU libc, but an
-     older version originally derived from the 4.2 BSD `malloc'.  This
-     `malloc' is very fast, but wastes some space on each allocation.
-     This option is enabled by default.  The `NOTES' file contains a
-     list of systems for which this should be turned off, and
-     `configure' disables this option automatically for a number of
-     systems.
 
 `--with-curses'
      Use the curses library instead of the termcap library.  This should
      be supplied if your system has an inadequate or incomplete termcap
      database.
-
-`--with-gnu-malloc'
-     A synonym for `--with-bash-malloc'.
 
 `--with-installed-readline[=PREFIX]'
      Define this to make Bash link with a locally-installed version of

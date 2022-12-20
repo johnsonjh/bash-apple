@@ -1493,11 +1493,6 @@ returns.  The next time getpwent is called, it sees that this
 pointer is non-null, calls free, and the bash free() blows up
 because it's being asked to free freed memory. 
 
-The traditional Unix mallocs allow memory to be freed multiple
-times; that's probably why this has never been fixed.  You can
-run configure with the `--without-gnu-malloc' option to use
-the C library malloc and avoid the problem.
-
 F4) I'm running SVR4.2.  Why is the line erased every time I type `@'?
 
 The `@' character is the default `line kill' character in most

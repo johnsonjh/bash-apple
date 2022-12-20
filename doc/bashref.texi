@@ -6665,7 +6665,7 @@ options.  @samp{configure --help} prints the complete list.
 The Bash @code{configure} has a number of @option{--enable-@var{feature}}
 options, where @var{feature} indicates an optional part of Bash.
 There are also several @option{--with-@var{package}} options,
-where @var{package} is something like @samp{bash-malloc} or @samp{purify}.
+where @var{package} is something like @samp{purify}.
 To turn off the default use of a package, use
 @option{--without-@var{package}}.  To configure Bash without a feature
 that is enabled by default, use @option{--disable-@var{feature}}.
@@ -6675,24 +6675,10 @@ Here is a complete list of the @option{--enable-} and
 
 @table @code
 
-@item --with-bash-malloc
-Use the Bash version of
-@code{malloc} in the directory @file{lib/malloc}.  This is not the same
-@code{malloc} that appears in @sc{gnu} libc, but an older version
-originally derived from the 4.2 @sc{bsd} @code{malloc}.  This @code{malloc}
-is very fast, but wastes some space on each allocation.
-This option is enabled by default.
-The @file{NOTES} file contains a list of systems for
-which this should be turned off, and @code{configure} disables this
-option automatically for a number of systems.
-
 @item --with-curses
 Use the curses library instead of the termcap library.  This should
 be supplied if your system has an inadequate or incomplete termcap
 database.
-
-@item --with-gnu-malloc
-A synonym for @code{--with-bash-malloc}.
 
 @item --with-installed-readline[=@var{PREFIX}]
 Define this to make Bash link with a locally-installed version of Readline

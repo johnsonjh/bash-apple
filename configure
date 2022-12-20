@@ -808,9 +808,7 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 with_lispdir
-with_bash_malloc
 with_curses
-with_gnu_malloc
 with_installed_readline
 with_purecov
 with_purify
@@ -1546,10 +1544,8 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-lispdir          override the default lisp directory
-  --with-bash-malloc      use the Bash version of malloc
   --with-curses           use the curses library instead of the termcap
                           library
-  --with-gnu-malloc       synonym for --with-bash-malloc
   --with-installed-readline
                           use a version of the readline library that is
                           already installed
@@ -3159,39 +3155,12 @@ case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 
 
-opt_bash_malloc=yes
 opt_purify=no
 opt_purecov=no
 opt_curses=no
 opt_with_installed_readline=no
 
 #htmldir=
-
-case "${host_cpu}-${host_os}" in
-alpha*-*)	opt_bash_malloc=no ;;	# alpha running osf/1 or linux
-*[Cc]ray*-*)	opt_bash_malloc=no ;;	# Crays
-*-osf1*)	opt_bash_malloc=no ;;	# other osf/1 machines
-sparc-svr4*)	opt_bash_malloc=no ;;	# sparc SVR4, SVR4.2
-sparc-netbsd*)	opt_bash_malloc=no ;;	# needs 8-byte alignment
-mips-irix6*)	opt_bash_malloc=no ;;	# needs 8-byte alignment
-m68k-sysv)	opt_bash_malloc=no ;;	# fixes file descriptor leak in closedir
-sparc-linux*)	opt_bash_malloc=no ;;	# sparc running linux; requires ELF
-#*-freebsd*-gnu)	opt_bash_malloc=no ;;	# there's some undetermined problem here
-#*-freebsd*)	opt_bash_malloc=no ;;	# they claim it's better; I disagree
-*-openbsd*)	opt_bash_malloc=no ;;	# they claim it needs eight-bit alignment
-*-aix*)		opt_bash_malloc=no ;;	# AIX machines
-*-nextstep*)	opt_bash_malloc=no ;;	# NeXT machines running NeXTstep
-*-macos*)	opt_bash_malloc=no ;;	# Apple MacOS X
-*-rhapsody*)	opt_bash_malloc=no ;;	# Apple Rhapsody (MacOS X)
-*-darwin*)	opt_bash_malloc=no ;;	# Apple Darwin (MacOS X)
-*-dgux*)	opt_bash_malloc=no ;;	# DG/UX machines
-*-qnx*)		opt_bash_malloc=no ;;	# QNX 4.2, QNX 6.x
-*-machten4)	opt_bash_malloc=no ;;	# MachTen 4.x
-*-bsdi2.1|*-bsdi3.?)	opt_bash_malloc=no ; : ${CC:=shlicc2} ;; # for loadable builtins
-*-beos*)	opt_bash_malloc=no ;;	# they say it's suitable
-*-cygwin*)	opt_bash_malloc=no ;;	# Cygnus's CYGWIN environment
-*-opennt*|*-interix*)	opt_bash_malloc=no ;;	# Interix, now owned by Microsoft
-esac
 
 # Check whether --with-lispdir was given.
 if test ${with_lispdir+y}
@@ -3277,28 +3246,10 @@ printf "%s\n" "$am_cv_lispdir" >&6; }
 fi
 
 
-
-
-
-
-# Check whether --with-bash-malloc was given.
-if test ${with_bash_malloc+y}
-then :
-  withval=$with_bash_malloc; opt_bash_malloc=$withval
-fi
-
-
 # Check whether --with-curses was given.
 if test ${with_curses+y}
 then :
   withval=$with_curses; opt_curses=$withval
-fi
-
-
-# Check whether --with-gnu-malloc was given.
-if test ${with_gnu_malloc+y}
-then :
-  withval=$with_gnu_malloc; opt_bash_malloc=$withval
 fi
 
 
@@ -3322,24 +3273,10 @@ then :
   withval=$with_purify; opt_purify=$withval
 fi
 
-
-if test "$opt_bash_malloc" = yes; then
-	MALLOC_TARGET=malloc
-	MALLOC_SRC=malloc.c
-
-	MALLOC_LIB='-lmalloc'
-	MALLOC_LIBRARY='$(ALLOC_LIBDIR)/libmalloc.a'
-	MALLOC_LDFLAGS='-L$(ALLOC_LIBDIR)'
-	MALLOC_DEP='$(MALLOC_LIBRARY)'
-
-	printf "%s\n" "#define USING_BASH_MALLOC 1" >>confdefs.h
-
-else
-	MALLOC_LIB=
-	MALLOC_LIBRARY=
-	MALLOC_LDFLAGS=
-	MALLOC_DEP=
-fi
+MALLOC_LIB=
+MALLOC_LIBRARY=
+MALLOC_LDFLAGS=
+MALLOC_DEP=
 
 if test "$opt_purify" = yes; then
 	PURIFY="purify "
@@ -10329,9 +10266,7 @@ printf "%s\n" "#define HAVE_STRCOLL 1" >>confdefs.h
 
 fi
 
-
-
-if test "$ac_cv_func_alloca_works" = "no" && test "$opt_bash_malloc" = "no"; then
+if test "$ac_cv_func_alloca_works" = "no"; then
 	MALLOC_TARGET=alloca
 	MALLOC_SRC=alloca.c
 

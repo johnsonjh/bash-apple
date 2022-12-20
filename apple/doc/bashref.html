@@ -11914,7 +11914,7 @@ options.  <SAMP>`configure --help'</SAMP> prints the complete list.
 The Bash <CODE>configure</CODE> has a number of <SAMP>`--enable-<VAR>feature</VAR>'</SAMP>
 options, where <VAR>feature</VAR> indicates an optional part of Bash.
 There are also several <SAMP>`--with-<VAR>package</VAR>'</SAMP> options,
-where <VAR>package</VAR> is something like <SAMP>`bash-malloc'</SAMP> or <SAMP>`purify'</SAMP>.
+where <VAR>package</VAR> is something like <SAMP>`purify'</SAMP>.
 To turn off the default use of a package, use
 <SAMP>`--without-<VAR>package</VAR>'</SAMP>.  To configure Bash without a feature
 that is enabled by default, use <SAMP>`--disable-<VAR>feature</VAR>'</SAMP>.
@@ -11926,26 +11926,10 @@ Here is a complete list of the <SAMP>`--enable-'</SAMP> and
 
 <DL COMPACT>
 
-<DT><CODE>--with-bash-malloc</CODE>
-<DD>Use the Bash version of
-<CODE>malloc</CODE> in the directory <TT>`lib/malloc'</TT>.  This is not the same
-<CODE>malloc</CODE> that appears in GNU libc, but an older version
-originally derived from the 4.2 BSD <CODE>malloc</CODE>.  This <CODE>malloc</CODE>
-is very fast, but wastes some space on each allocation.
-This option is enabled by default.
-The <TT>`NOTES'</TT> file contains a list of systems for
-which this should be turned off, and <CODE>configure</CODE> disables this
-option automatically for a number of systems.
-<P>
-
 <DT><CODE>--with-curses</CODE>
 <DD>Use the curses library instead of the termcap library.  This should
 be supplied if your system has an inadequate or incomplete termcap
 database.
-<P>
-
-<DT><CODE>--with-gnu-malloc</CODE>
-<DD>A synonym for <CODE>--with-bash-malloc</CODE>.
 <P>
 
 <DT><CODE>--with-installed-readline[=<VAR>PREFIX</VAR>]</CODE>

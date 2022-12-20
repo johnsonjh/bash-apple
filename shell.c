@@ -68,10 +68,6 @@
 #include "execute_cmd.h"
 #include "findcmd.h"
 
-#if defined (USING_BASH_MALLOC) && defined (DEBUG) && !defined (DISABLE_MALLOC_WRAPPERS)
-#  include <malloc/shmalloc.h>
-#endif
-
 #if defined (HISTORY)
 #  include "bashhist.h"
 #  include <readline/history.h>
@@ -374,21 +370,12 @@ main (argc, argv, env)
   code = setjmp (top_level);
   if (code)
     exit (2);
-/* #if defined(__APPLE__) */
-/*   if (!COMPAT_MODE("bin/sh", "Unix2003")) { */
 #if defined(STRICT_POSIX)
     execv("/bin/bash", argv);
     exit (2);
 #else	/* !STRICT_POSIX */
     tiger_mode = 1;	/* act like Tiger wrt setuid and #!/bin/sh */
 #endif	/* STRICT_POSIX */
-  /* } */
-/* #endif /1* __APPLE__ *1/ */
-#if defined (USING_BASH_MALLOC) && defined (DEBUG) && !defined (DISABLE_MALLOC_WRAPPERS)
-#  if 1
-  malloc_set_register (1);
-#  endif
-#endif
 
   check_dev_tty ();
 
@@ -405,10 +392,6 @@ main (argc, argv, env)
 
   if (getenv ("POSIXLY_CORRECT") || getenv ("POSIX_PEDANTIC"))
     posixly_correct = 1;
-
-#if defined (USE_GNU_MALLOC_LIBRARY)
-  mcheck (programming_error, (void (*) ())0);
-#endif /* USE_GNU_MALLOC_LIBRARY */
 
   if (setjmp (subshell_top_level))
     {
@@ -965,10 +948,6 @@ void
 sh_exit (s)
      int s;
 {
-#if defined (MALLOC_DEBUG) && defined (USING_BASH_MALLOC)
-  if (malloc_trace_at_exit)
-    trace_malloc_stats (get_name_for_error (), (char *)NULL);
-#endif
 
   exit (s);
 }
